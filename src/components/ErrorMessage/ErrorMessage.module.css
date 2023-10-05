@@ -1,0 +1,5 @@
+  .text{
+    font-family: var(--font-family-default);
+    font-size: var(--font-size-default);
+    color: white;
+  }

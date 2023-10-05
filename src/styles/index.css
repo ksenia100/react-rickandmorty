@@ -1,0 +1,22 @@
+:root{
+--font-family-default: sans-serif;
+--font-size-default: 16px;
+--font-bold: 600;
+--font-tiny: 400;
+
+--color-bg: rgb(32, 35, 41);
+--color-gray: rgb(60, 62, 68);
+--color-blue: rgb(111, 143, 212);
+
+--border-radius-small: 4px;
+
+--box-shadow-black:0px 0px 10px rgba(0, 0, 0, 0.5); 
+
+}
+
+body {
+    background-color:var(--color-bg);
+}
+
+  
+
