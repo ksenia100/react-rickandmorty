@@ -1,0 +1,1 @@
+export const CHARACTER_LIST_ROUTE = 'https://rickandmortyapi.com/api/character/';

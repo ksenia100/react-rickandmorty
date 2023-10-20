@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import CharacterList from '@components/CharacterPage/CharacterList';
 import CharacterNavigation from '@components/CharacterPage/CharacterNavigation';
 import CharacterSearch from '@components/CharacterPage/CharacterSearch';
 
 import { getApiResource } from '@utils/network';
-import { getCharacterId, getCharacterImg, getCharacterPageId } from '@services/getCharacterData';
-import { useQueryParams } from '@hooks/useQueryParams';
+import { getCharacterId, getCharacterImg } from '@services/getCharacterData';
 
 import styles from './CharacterPage.module.css';
+import {CHARACTER_LIST_ROUTE} from "../../constants/api_routes";
+import {useSearchParams} from "react-router-dom";
 
 const CharacterPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [characters, setCharacters] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [prevPage, setPrevPage] = useState(null);
-  const [nextPage, setNextPage] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(searchParams.get('page') ? Number(searchParams.get('page')) : 1);
+  console.log();
 
-  const query = useQueryParams();
+  const paginate = (page) => {
+    setCurrentPage(page);
+  }
 
   const getResource = async (url) => {
-    console.log(url);
-    
-  if(!url){
-    url = `https://rickandmortyapi.com/api/character/?page=${currentPage}&name=${searchValue}`;
-  }
-  
   const res = await getApiResource(url);
-
     if (!res) {
       setCharacters([]);
       return;
@@ -45,18 +40,14 @@ const CharacterPage = () => {
         status,
       };
     });
-
-
     setCharacters(characterList);
-    setPrevPage(res.info.prev);
-    setNextPage(res.info.next);
-    setCurrentPage(Number(query.get('page')));
-    
   };
 
+
+
   useEffect(() => {
-    getResource('https://rickandmortyapi.com/api/character/?page=' + currentPage);
-  }, []);
+    getResource(`${CHARACTER_LIST_ROUTE}?page=${currentPage}`);
+  }, [currentPage]);
 
 
   return (
@@ -74,10 +65,8 @@ const CharacterPage = () => {
         <>
           <CharacterList character={characters} />
           <CharacterNavigation
-            getResource={getResource}
-            prevPage={prevPage}
-            nextPage={nextPage}
-            currentPage={currentPage}
+              paginate={paginate}
+              currentPage={currentPage}
           />
         </>
       )}
