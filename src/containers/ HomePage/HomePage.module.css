@@ -1,0 +1,14 @@
+
+.home_page {
+
+    background-image: url('@static/bg1.jpg');
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+

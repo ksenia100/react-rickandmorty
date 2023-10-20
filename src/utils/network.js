@@ -7,15 +7,9 @@ export const getApiResource = async (url) => {
             return false;
         }
 
-        return await res.json(); 
+        return await res.json();
     } catch (error) {
         console.error('Could not fetch.', error.message);
         return false;
     }
 }
-
-
-
-
-
-

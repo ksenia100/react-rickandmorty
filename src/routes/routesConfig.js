@@ -1,8 +1,14 @@
+import HomePage from '@containers/ HomePage/HomePage';
 import CharacterPage from '@containers/CharacterPage';
 import EpisodePage from '@containers/EpisodePage';
 import LocationPage from '@containers/LocationPage';
 
 const routesConfig = [
+    {
+        path: '/',
+        exact: true,
+        component: HomePage
+    },
     {
         path: '/characters',
         exact: true,
