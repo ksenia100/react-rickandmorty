@@ -1,4 +1,4 @@
-import HomePage from '@containers/ HomePage/HomePage';
+import HomePage from '@containers/HomePage';
 import CharacterPage from '@containers/CharacterPage';
 import EpisodePage from '@containers/EpisodePage';
 import LocationPage from '@containers/LocationPage';

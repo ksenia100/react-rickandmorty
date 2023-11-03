@@ -4,7 +4,8 @@ import styles from './CharacterNavigation.module.css';
 
 const CharacterNavigation = ({
     paginate,
-    currentPage
+    currentPage,
+    totalPages
 }) => {
 
     return (
@@ -21,12 +22,13 @@ const CharacterNavigation = ({
             <Link to={`/character/?page=${currentPage + 1}`} className={styles.link}>
                 <button
                     onClick={() => paginate(currentPage + 1)}
-                    // disabled={!nextPage}
+                    disabled={currentPage >= totalPages}
                     className={styles.buttons}
                 >
                     Next
                 </button>
             </Link>
+
         </div>
     )
 }

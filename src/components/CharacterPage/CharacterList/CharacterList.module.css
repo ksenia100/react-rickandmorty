@@ -1,21 +1,18 @@
 .list__container {
   display: flex;
   flex-wrap: wrap;
+  width: 75%; 
   justify-content: center;
-  align-items: center;
-  margin: 2px;
   padding: 0;
   list-style-type: none;
 }
+
 .list__item {
-  width: 200px;
-  margin: 20px;
+  width: 230px;
+  margin: 10px;
   background-color: #21160b;
-  cursor: pointer;
   border-radius: var(--border-radius-small);
   box-shadow: var(--box-shadow-black);
-
-
 }
 .list__item a {
   text-decoration: none;
@@ -30,7 +27,7 @@
 }
 .person__photo {
   width: 100%;
-  height: 230px;
+  height: 270px;
   object-fit: cover;
   object-position: top center;
   border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
