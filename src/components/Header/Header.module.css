@@ -35,7 +35,7 @@
 }
 
 .list__container :global(a.active) {
-  background-color:  rgb(192, 124, 76);
+  background-color:  rgb(213, 127, 66);
 }
 
 .list__container a:hover {

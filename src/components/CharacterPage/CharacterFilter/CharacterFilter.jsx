@@ -1,90 +1,87 @@
+import React, { useState } from 'react';
 import styles from './CharacterFilter.module.css';
-import { useState } from 'react';
 
-const CharacterFilter = ({ statusFilter, genderFilter, speciesFilter }) => {
+const CharacterFilter = ({ onFilter, filters }) => {
   const [isStatusExpanded, setIsStatusExpanded] = useState(false);
   const [isGenderExpanded, setIsGenderExpanded] = useState(false);
   const [isSpeciesExpanded, setIsSpeciesExpanded] = useState(false);
 
-  const statusAliveFilter = () => statusFilter('alive');
-  const statusUnknownFilter = () => statusFilter('unknown');
-  const statusDeadFilter = () => statusFilter('dead');
+  const toggleStatusFilter = (filterValue) => onFilter('status', filters.status === filterValue ? '' : filterValue);
+  const toggleGenderFilter = (filterValue) => onFilter('gender', filters.gender === filterValue ? '' : filterValue);
+  const toggleSpeciesFilter = (filterValue) => onFilter('species', filters.species === filterValue ? '' : filterValue);
 
-  const genderMaleFilter = () => genderFilter('male');
-  const genderFemaleFilter = () => genderFilter('female');
-  const genderGenderlessFilter = () => genderFilter('genderless');
-  const genderUnknownFilter = () => genderFilter('unknown');
-
-  const speciesHumanFilter = () => speciesFilter('human');
-  const speciesAlienFilter = () => speciesFilter('alien');
-  const speciesMythologicalFilter = () => speciesFilter('mythological');
-  const speciesUnknownFilter = () => speciesFilter('unknown');
-  const speciesAnimalFilter = () => speciesFilter('animal');
-  const speciesDiseaseFilter = () => speciesFilter('disease');
-  const speciesRobotFilter = () => speciesFilter('robot');
-  const speciesCronenbergFilter = () => speciesFilter('cronenberg');
-
-  const toggleStatusFilter = () => setIsStatusExpanded(!isStatusExpanded);
-  const toggleGenderFilter = () => setIsGenderExpanded(!isGenderExpanded);
-  const toggleSpeciesFilter = () => setIsSpeciesExpanded(!isSpeciesExpanded);
-
+  const clearFilters = () => {
+    onFilter('status', '');
+    onFilter('gender', '');
+    onFilter('species', '');
+    setIsStatusExpanded(false);
+    setIsGenderExpanded(false);
+    setIsSpeciesExpanded(false);
+  };
 
   return (
     <div className={styles.container__filter}>
       <h1 className={styles.filter}>Filters</h1>
-      <a href="#" className={styles.clear}>
+      <a href='#' className={styles.clear} onClick={clearFilters}>
         Clear Filters
       </a>
       <div className={styles.filterCategory}>
-        <button
-          className={styles.accordingItem}
-          onClick={toggleStatusFilter}
-        >
+        <button className={styles.accordingItem} onClick={() => setIsStatusExpanded(!isStatusExpanded)}>
           Status {isStatusExpanded ? '▽' : '△'}
         </button>
         {isStatusExpanded ? (
           <div className={`${styles.accordingContent} ${isStatusExpanded ? styles.show : ''}`}>
-            <button onClick={statusAliveFilter}>Alive</button>
-            <button onClick={statusUnknownFilter} >Unknown</button>
-            <button onClick={statusDeadFilter}>Dead</button>
+            <button className={filters.status === 'alive' ? styles.activeFilter : ''}
+              onClick={() => toggleStatusFilter('alive')}> Alive </button>
+            <button className={filters.status === 'unknown' ? styles.activeFilter : ''}
+              onClick={() => toggleStatusFilter('unknown')} > Unknown</button>
+            <button className={filters.status === 'dead' ? styles.activeFilter : ''}
+              onClick={() => toggleStatusFilter('dead')}> Dead </button>
           </div>
         ) : null}
-
       </div>
+
+
       <div className={styles.filterCategory}>
-        <button
-          className={styles.accordingItem}
-          onClick={toggleGenderFilter}
-        >
+        <button className={styles.accordingItem} onClick={() => setIsGenderExpanded(!isGenderExpanded)}>
           Gender {isGenderExpanded ? '▽' : '△'}
         </button>
         {isGenderExpanded ? (
           <div className={`${styles.accordingContent} ${isGenderExpanded ? styles.show : ''}`}>
-            <button onClick={genderMaleFilter}>Male</button>
-            <button onClick={genderFemaleFilter}>Female</button>
-            <button onClick={genderGenderlessFilter}>Genderless</button>
-            <button onClick={genderUnknownFilter}>Unknown</button>
+            <button className={filters.gender === 'male' ? styles.activeFilter : ''}
+              onClick={() => toggleGenderFilter('male')} >Male</button>
+            <button className={filters.gender === 'female' ? styles.activeFilter : ''}
+              onClick={() => toggleGenderFilter('female')}>Female</button>
+            <button className={filters.gender === 'genderless' ? styles.activeFilter : ''}
+              onClick={() => toggleGenderFilter('genderless')}>Genderless</button>
+            <button className={filters.gender === 'unknown' ? styles.activeFilter : ''}
+              onClick={() => toggleGenderFilter('unknown')}>Unknown</button>
           </div>
         ) : null}
-
       </div>
+
       <div className={styles.filterCategory}>
-        <button
-          className={styles.accordingItem}
-          onClick={toggleSpeciesFilter}
-        >
+        <button className={styles.accordingItem} onClick={() => setIsSpeciesExpanded(!isSpeciesExpanded)}>
           Species {isSpeciesExpanded ? '▽' : '△'}
         </button>
         {isSpeciesExpanded ? (
           <div className={`${styles.accordingContent} ${isSpeciesExpanded ? styles.show : ''}`}>
-            <button onClick={speciesHumanFilter}>Human</button>
-            <button onClick={speciesAlienFilter}>Alien</button>
-            <button onClick={speciesMythologicalFilter}>Mythological</button>
-            <button onClick={speciesUnknownFilter}>Unknown</button>
-            <button onClick={speciesAnimalFilter}> Animal</button>
-            <button onClick={speciesDiseaseFilter}>Disease</button>
-            <button onClick={speciesRobotFilter}>Robot</button>
-            <button onClick={speciesCronenbergFilter}>Cronenberg</button>
+            <button className={filters.species === 'human' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('human')}>Human</button>
+            <button className={filters.species === 'alien' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('alien')}>Alien</button>
+            <button className={filters.species === 'mythological' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('mythological')}>Mythological</button>
+            <button className={filters.species === 'unknown' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('unknown')}>Unknown</button>
+            <button className={filters.species === 'animal' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('animal')}>Animal</button>
+            <button className={filters.species === 'disease' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('disease')}>Disease</button>
+            <button className={filters.species === 'robot' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('robot')}>Robot</button>
+            <button className={filters.species === 'croneberg' ? styles.activeFilter : ''}
+              onClick={() => toggleSpeciesFilter('croneberg')}>Croneberg</button>
           </div>
         ) : null}
       </div>
@@ -92,4 +89,4 @@ const CharacterFilter = ({ statusFilter, genderFilter, speciesFilter }) => {
   );
 };
 
-export default CharacterFilter;  
+export default CharacterFilter;
