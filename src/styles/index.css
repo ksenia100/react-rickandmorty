@@ -8,15 +8,13 @@
     --box-shadow-black: 0px 0px 10px rgba(0, 0, 0, 0.5);
     
     --background-default: url('@static/bg.jpg');
-    --background-home: url('@static/bg1.jpg');
+    --background-home: url('@static/home_bg.jpg');
   }
   
 
   body {
-    background: var(--background-default) top left no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-
     margin: 0;
     padding: 0;
   }
+
+

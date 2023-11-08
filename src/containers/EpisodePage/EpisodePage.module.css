@@ -1,0 +1,12 @@
+.episode{
+    background-image: var(--background-default);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    min-height: 100vh;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+}

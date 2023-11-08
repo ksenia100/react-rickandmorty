@@ -14,9 +14,3 @@ const CharacterSearch = ({ searchValue, setSearchValue }) => {
 };
 
 export default CharacterSearch;
-
-
-
-
-
-
